@@ -1,0 +1,26 @@
+﻿site_name: Security Products Docs
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+plugins:
+  - search
+  - awesome-pages
+  - section-index
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - codehilite
+extra:
+  generator: false
+  social:
+    - icon: material/book-open-page-variant
+      link: https://lihaifeng.net/
+      name: Blog     
+
