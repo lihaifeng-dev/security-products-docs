@@ -10,18 +10,59 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Build site
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-section-index
+          fi
+
+      # 规范化 Windows 风格路径，避免 .\assets\*.png 在 Linux 构建时报错
+      - name: Normalize Windows-style image paths
+        run: |
+          python - <<'PY'
+          import pathlib, re
+          for p in pathlib.Path('docs').rglob('*.md'):
+              s = p.read_text(encoding='utf-8')
+              s2 = s
+              # 统一为 assets/xxx，正斜杠
+              s2 = s2.replace('.\\assets\\','assets/')
+              s2 = s2.replace('.\\assets/','assets/')
+              s2 = s2.replace('\\assets\\','assets/')
+              # 避免遗留反斜杠
+              s2 = s2.replace('\\','/')
+              if s2 != s:
+                  p.write_text(s2, encoding='utf-8')
+          PY
+
+      - name: Build site (strict)
         run: mkdocs build --strict
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -34,5 +75,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
