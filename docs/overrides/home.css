@@ -1,0 +1,59 @@
+/* 让首页更宽（仅首页生效） */
+[data-md-page="index"] .md-grid {
+  max-width: 1280px;              /* 默认大约 61rem，可按需调到 1200~1440 */
+}
+
+/* 英雄区：全宽背景 + 居中内容 */
+.hero {
+  margin: 0 calc(50% - 50vw);     /* 让背景横向满屏（break out） */
+  padding: 72px 24px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(99,102,241,0.08), rgba(0,0,0,0));
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+.hero h1 {
+  margin: 0 0 8px 0;
+  font-size: clamp(32px, 5vw, 44px);
+  line-height: 1.1;
+}
+.hero .tagline {
+  margin: 0 auto 20px;
+  max-width: 840px;
+  font-size: 1.05rem;
+  opacity: .85;
+}
+.hero .buttons .md-button {
+  margin: 6px 8px;
+}
+
+/* 特性网格：自适应列数 */
+.features.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.features .card {
+  padding: 18px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 16px;
+  background: var(--md-default-bg-color);
+  box-shadow: var(--md-shadow-z1);
+}
+.features .card h3 {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+.features .card p {
+  margin-top: 0;
+  margin-bottom: 12px;
+  min-height: 48px;               /* 让按钮对齐 */
+}
+
+/* 暗色模式的轻调整（可选） */
+[data-md-color-scheme="slate"] .hero {
+  background: linear-gradient(180deg, rgba(99,102,241,0.14), rgba(0,0,0,0));
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+
+

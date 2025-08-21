@@ -1,4 +1,7 @@
-﻿site_name: Security Products Docs
+﻿
+copyright: "© 2025 Haifeng Li — Site created on August 20, 2025"
+
+site_name: Security Products Docs
 theme:
   name: material
   language: en
@@ -6,7 +9,11 @@ theme:
     - navigation.instant
     - navigation.sections
     - navigation.indexes
+    - navigation.expand
     - content.code.copy
+    - navigation.tabs
+    - navigation.tracking
+    # - navigation.footer
 plugins:
   - search
   - awesome-pages
@@ -22,5 +29,10 @@ extra:
   social:
     - icon: material/book-open-page-variant
       link: https://lihaifeng.net/
-      name: Blog     
-
+      name: Blog   
+  footer: |
+    <div style="text-align: center; font-size: 0.85rem; opacity: 0.8; margin-top: 1em;">
+      Site created on <strong>August 20, 2025</strong>
+    </div>  
+extra_css:
+  - overrides/home.css 

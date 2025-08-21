@@ -1,30 +1,13 @@
-﻿---
-title: Security Products Docs
+---
+title: Archives
 hide:
-  - navigation
   - toc
 ---
 
-<div class="hero">
-  <h1>Security Products Docs</h1>
-  <p class="tagline">Labs · Playbooks · Best Practices — Faster, Safer, Clearer</p>
+# Archives
 
-  <p class="buttons">
-    <a href="how-to/" class="md-button md-button--primary">How-to &amp; Troubleshooting</a>
-    <a href="cloud-swg/" class="md-button">Cloud SWG</a>
-    <a href="edge-swg/" class="md-button">Edge SWG</a>
-    <a href="other-products/" class="md-button">Other Products</a>
-    <a href="integration/" class="md-button">Integration</a>
-  </p>
-</div>
-
----
-
-## Latest Updates
-
-<!-- BEGIN AUTO UPDATES -->
-_Generated on 2025-08-21 • Ordered by creation time_
-
+<!-- BEGIN AUTO ARCHIVES -->
+## 2025-08
 - 2025-08-20 — [Seamless Integration: Edge SWG and Cloud SWG Traffic Flow Control](integration/edge-cloud-swg-traffic-control/)
 - 2025-08-20 — [Installing Symantec Content Analysis on VMware ESXi](other-products/deployment/content-analysis-esxi/)
 - 2025-08-20 — [Installing pfSense on ESXi](other-products/deployment/pfsense-esxi/)
@@ -42,6 +25,7 @@ _Generated on 2025-08-21 • Ordered by creation time_
 - 2025-08-20 — [Connecting pfSense with Symantec Cloud SWG using DDNS and IPsec IKEv2](cloud-swg/connectivity/ddns-ipsec-pfsense/)
 - 2025-08-20 — [How to Configure Explicit Proxy for Cloud SWG](cloud-swg/connectivity/explicit-cloud-swg/)
 - 2025-08-20 — [Configuring Symantec Cloud SWG Static IP IPsec VPN with pfSense](cloud-swg/connectivity/static-ipsec-pfsense/)
-- 1970-01-01 — [Deploy Symantec Management Center on Azure](other-products/deployment/management-center-azure/)
-<!-- END AUTO UPDATES -->
 
+## 1970-01
+- 1970-01-01 — [Deploy Symantec Management Center on Azure](other-products/deployment/management-center-azure/)
+<!-- END AUTO ARCHIVES -->

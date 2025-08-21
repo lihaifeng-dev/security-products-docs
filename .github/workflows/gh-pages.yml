@@ -18,8 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (full history for creation dates)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -42,23 +44,31 @@ jobs:
             pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-section-index
           fi
 
-      # 规范化 Windows 风格路径，避免 .\assets\*.png 在 Linux 构建时报错
       - name: Normalize Windows-style image paths
         run: |
           python - <<'PY'
-          import pathlib, re
+          import pathlib
           for p in pathlib.Path('docs').rglob('*.md'):
               s = p.read_text(encoding='utf-8')
-              s2 = s
-              # 统一为 assets/xxx，正斜杠
-              s2 = s2.replace('.\\assets\\','assets/')
-              s2 = s2.replace('.\\assets/','assets/')
-              s2 = s2.replace('\\assets\\','assets/')
-              # 避免遗留反斜杠
-              s2 = s2.replace('\\','/')
+              s2 = (s.replace('.\\assets\\','assets/')
+                      .replace('.\\assets/','assets/')
+                      .replace('\\assets\\','assets/')
+                      .replace('\\','/'))
               if s2 != s:
                   p.write_text(s2, encoding='utf-8')
           PY
+
+      # 生成首页“Latest Updates”（以及可选的 Archives）
+      - name: Generate Home & Archives
+        run: |
+          if [ -f tools/gen_updates.py ]; then
+            python tools/gen_updates.py --docs docs --index docs/index.md --limit 10
+            if [ -f docs/archives.md ]; then
+              python tools/gen_updates.py --docs docs --archives docs/archives.md
+            fi
+          else
+            echo "tools/gen_updates.py not found, skip generation."
+          fi
 
       - name: Build site (strict)
         run: mkdocs build --strict
