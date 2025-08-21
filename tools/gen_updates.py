@@ -129,12 +129,16 @@ def collect_docs(repo_root: Path, docs_dir: Path) -> List[Dict]:
 
 def build_updates_markdown(items: List[Dict], limit: int) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
-    out = [f"_Generated on {today} • Ordered by creation time_", ""]
+    out = [
+        f"_Generated on {today} • Showing latest {limit} updates (by creation time)_",
+        ""
+    ]
     for it in items[:limit]:
         url = it["rel"].with_suffix("").as_posix() + "/"
         out.append(f"- {it['date']} — [{it['title']}]({url})")
     out.append("")
     return "\n".join(out)
+
 
 
 def build_archives_markdown(items: List[Dict]) -> str:
