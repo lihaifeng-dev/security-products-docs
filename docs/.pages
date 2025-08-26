@@ -1,8 +1,10 @@
 ﻿
 nav:
-  - How-to & Troubleshooting: how-to
+  - Home: index.md
+  - Knowledge: knowledge
   - Cloud SWG: cloud-swg
   - Edge SWG: edge-swg
   - Other Products: other-products
   - Integration: integration
+  - Troubleshooting: troubleshooting
   - Archives: archives

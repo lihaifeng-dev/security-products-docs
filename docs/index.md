@@ -10,11 +10,12 @@ hide:
   <p class="tagline">Labs · Playbooks · Best Practices — Faster, Safer, Clearer</p>
 
   <p class="buttons">
-    <a href="how-to/" class="md-button md-button--primary">How-to &amp; Troubleshooting</a>
+    <a href="knowledge/" class="md-button">Knowledge</a>
     <a href="cloud-swg/" class="md-button">Cloud SWG</a>
     <a href="edge-swg/" class="md-button">Edge SWG</a>
     <a href="other-products/" class="md-button">Other Products</a>
     <a href="integration/" class="md-button">Integration</a>
+    <a href="troubleshooting/" class="md-button">Troubleshooting</a>
   </p>
 </div>
 
